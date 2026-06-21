@@ -1,8 +1,6 @@
 "use client";
 import { useState, useRef, useEffect, useCallback } from "react";
 
-export const metadata = { title: "AI Chat" };
-
 const STARTERS = [
   "How do I script a basic combat system in Roblox?",
   "What's the difference between LocalScript and Script?",
