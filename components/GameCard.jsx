@@ -1,30 +1,30 @@
-import Image from "next/image";
-
 export default function GameCard({ game }) {
   return (
-    <a
-      href={game.play_url || "#"}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group block border border-line bg-panel overflow-hidden hover:border-signal transition"
-    >
-      {game.image_url && (
-        <div className="relative h-48">
-          <Image
-            src={game.image_url}
-            alt={game.title}
-            fill
-            className="object-cover group-hover:scale-105 transition"
-          />
-        </div>
-      )}
-      <div className="p-5">
-        <h3 className="font-display text-xl text-paper">{game.title}</h3>
-        {game.description && <p className="mt-2 text-sm text-dim line-clamp-3">{game.description}</p>}
-        {game.play_url && (
-          <div className="mt-4 text-signal text-xs font-mono tracking-wider">PLAY ON ROBLOX →</div>
+    <article className="group border border-line bg-panel transition hover:border-signal/40">
+      <div className="aspect-video w-full overflow-hidden border-b border-line bg-ink">
+        {game.image_url ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={game.image_url} alt={game.title}
+               className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+        ) : (
+          <div className="flex h-full items-center justify-center font-mono text-xs uppercase tracking-widest text-muted">
+            No cover
+          </div>
         )}
       </div>
-    </a>
+      <div className="p-5">
+        <h3 className="font-display text-base font-semibold text-paper">{game.title}</h3>
+        {game.description && (
+          <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-muted">{game.description}</p>
+        )}
+        {game.play_url && (
+          <a href={game.play_url} target="_blank" rel="noreferrer"
+             className="mt-4 inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-signal transition hover:gap-2.5">
+            Play on Roblox
+            <span aria-hidden>→</span>
+          </a>
+        )}
+      </div>
+    </article>
   );
 }
